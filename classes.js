@@ -41,7 +41,7 @@ class Employee {
     return this.first_name +" "+ this.last_name + " " + "Widget"
   }
 }
-Employee();
+
 ////////// PROBLEM 2 //////////
 
 /*
@@ -58,17 +58,17 @@ Employee();
 */
 
 //Code Here
-class Manager extends Employee{
+class Manager extends Employee {
+
   constructor(first_name, last_name, email, age){
     super(first_name, last_name, email, age);
     this.reports = []
   }
   hire(employee){
-    [...this.reports, employee]
-
+    this.reports.push(employee)
   }
   fire(index){
-     this.reports.splice(index)
+     this.reports.splice(index, 1)
   }
 }
 
@@ -96,18 +96,43 @@ class Manager extends Employee{
 
 //Code Here
 class ProgressiveManager extends Manager{
-  constructor(first_name, last_name, email, age, reports){
-    super(first_name, last_name, email, age, reports);
+  constructor(first_name, last_name, email, age){
+    super(first_name, last_name, email, age);
     this.title = 'Not a manager';
     this.bonus = 0;
   }
   hire(employee){
-    [...this.reports, employee]
+    super.hire(employee);
+    if (this.reports.length = 0){
+      this.title = "Not a manager"
+    }
+    else if (1 <= this.reports.length <= 3){
+      this.title = "Barely Manager"
+    }
+    else if (4 <= this.reports.length <= 10){
+      this.title = "Mostly Manager"
+    }
+    else if (11 <= this.reports.length <= 50){
+      this.title = "Manager"
+    }
+    else if(51 <= this.reports.length <= 100){
+      this.title = "Manager Plus"
+    }
+    else if (this.reports.length > 101){ 
+    this.title = "Bestest Manager"
+  }
+
+
+   
+  
+    
+  }
+  fire(){
+    super.fire();
+    this.bonus += 100;
 
   }
-  fire(index){
-     this.reports.splice(index)
-  }
+  
 }
 
 
@@ -135,5 +160,25 @@ class ProgressiveManager extends Manager{
 */
 
 //Code Here
+class Machine {
+  constructor(widgets_made_count, wear_and_tear_count, needs_reboot){
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  makeWidgets(num){
+    this.widgets_made_count = num; 
 
+  }
+  fixMachine(){
+    this.needs_reboot = true;
+  }
+  reboot(){
+    return function(){
+      this.wear_and_tear_count -= 10;
+      this.reboot = false;
+    }
+  }
+  
+}
 
