@@ -103,19 +103,17 @@ class ProgressiveManager extends Manager{
   }
   hire(employee){
     super.hire(employee);
-    if (this.reports.length = 0){
-      this.title = "Not a manager"
-    }
-    else if (1 <= this.reports.length <= 3){
+     if (1 <= this.reports.length && this.reports.length <= 3){
       this.title = "Barely Manager"
     }
-    else if (4 <= this.reports.length <= 10){
+    
+     else if (4 <= this.reports.length && this.reports.length <= 10){
       this.title = "Mostly Manager"
     }
-    else if (11 <= this.reports.length <= 50){
+    else if (11 <= this.reports.length && this.reports.length <= 50){
       this.title = "Manager"
     }
-    else if(51 <= this.reports.length <= 100){
+    else if(51 <= this.reports.length && this.reports.length <= 100){
       this.title = "Manager Plus"
     }
     else if (this.reports.length > 101){ 
